@@ -1,0 +1,21 @@
+# Node / Next.js
+node_modules/
+.next/
+out/
+
+# Java / Spring Boot
+target/
+
+# Environment files
+.env
+.env.local
+
+# IDE
+.idea/
+.vscode/
+
+# Mac
+.DS_Store
+
+# Logs
+*.log
