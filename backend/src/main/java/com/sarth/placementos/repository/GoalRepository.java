@@ -11,4 +11,7 @@ public interface GoalRepository
 
     List<Goal> findByUserId(Long userId);
 
+
+    long countByUserId(Long userId);
+
 }

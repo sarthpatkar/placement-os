@@ -11,4 +11,14 @@ public interface TrackRepository extends JpaRepository<Track, Long> {
 
     @Query("SELECT t FROM Track t WHERE t.user.id = :userId")
     List<Track> findByUserId(@Param("userId") Long userId);
+
+
+    @Query("""
+            SELECT t FROM Track t
+            WHERE t.user.id = :userId
+            AND t.archived = false
+            """)
+    List<Track> findByUserIdAndArchivedFalse(
+            @Param("userId") Long userId
+    );
 }
