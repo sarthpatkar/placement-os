@@ -22,6 +22,11 @@ public class Track {
     @Column(nullable = false)
     private String name;
 
+    private String description;
+
+    @Builder.Default
+    private boolean archived = false;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TrackType type;
@@ -32,8 +37,16 @@ public class Track {
 
     private LocalDateTime createdAt;
 
+    private LocalDateTime updatedAt;
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();
+        updatedAt = createdAt;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
     }
 }
