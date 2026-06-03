@@ -1,34 +1,38 @@
 package com.sarth.placementos.entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "modules")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
 public class Module {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
+    private String title;
 
-private Long id;
+    @Column(nullable = false)
+    @Builder.Default
+    private Integer progress = 0;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "track_id", nullable = false)
+    private Track track;
 
-private String title;
+    private LocalDateTime createdAt;
 
-
-private Integer progress=0;
-
-
-@ManyToOne
-private Track track;
-
-
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
 }

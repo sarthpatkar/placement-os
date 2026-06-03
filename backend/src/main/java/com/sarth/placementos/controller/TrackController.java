@@ -1,41 +1,32 @@
 package com.sarth.placementos.controller;
 
-
-import com.sarth.placementos.entity.Track;
+import com.sarth.placementos.dto.TrackRequest;
+import com.sarth.placementos.dto.TrackResponse;
 import com.sarth.placementos.service.TrackService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
-@RequestMapping("/api/tracks")
+@RequestMapping("/api/users/{userId}/tracks")
 @RequiredArgsConstructor
-
 public class TrackController {
 
+    private final TrackService trackService;
 
-private final TrackService service;
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public TrackResponse create(
+            @PathVariable Long userId,
+            @Valid @RequestBody TrackRequest request) {
+        return trackService.create(userId, request);
+    }
 
-
-@PostMapping
-public Track create(
-        @RequestBody Track track
-){
-
-    return service.create(track);
-
-}
-
-
-
-@GetMapping
-public List<Track> all(){
-
-    return service.getAll();
-
-}
-
-
+    @GetMapping
+    public List<TrackResponse> getAll(@PathVariable Long userId) {
+        return trackService.getAllByUserId(userId);
+    }
 }
