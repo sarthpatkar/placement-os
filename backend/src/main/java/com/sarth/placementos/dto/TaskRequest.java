@@ -10,14 +10,14 @@ import lombok.Setter;
 @Setter
 public class TaskRequest {
 
-    @NotBlank
+    @NotBlank(message = "Task title is required")
     private String title;
 
     private Status status;
 
-    @Min(0)
+    @Min(value = 1, message = "Planned minutes must be positive")
     private Integer plannedMinutes;
 
-    @Min(0)
+    @Min(value = 0, message = "Actual minutes cannot be negative")
     private Integer actualMinutes;
 }

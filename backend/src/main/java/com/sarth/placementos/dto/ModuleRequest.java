@@ -10,10 +10,10 @@ import lombok.Setter;
 @Setter
 public class ModuleRequest {
 
-    @NotBlank
+    @NotBlank(message = "Module title is required")
     private String title;
 
-    @Min(0)
-    @Max(100)
+    @Min(value = 0, message = "Progress cannot be below 0")
+    @Max(value = 100, message = "Progress cannot exceed 100")
     private Integer progress;
 }

@@ -10,9 +10,9 @@ import lombok.Setter;
 @Setter
 public class TrackRequest {
 
-    @NotBlank
-    private String name;
+@NotBlank(message = "Track name is required")
+private String name;
 
-    @NotNull
-    private TrackType type;
+@NotNull(message = "Track type is required")
+private TrackType type;
 }
