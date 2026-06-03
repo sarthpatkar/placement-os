@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: placementos
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/placementos
+    username: sarth
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8080
